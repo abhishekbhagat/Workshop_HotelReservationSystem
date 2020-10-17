@@ -40,11 +40,11 @@ public class HotelReservationSystem {
 		calculateTotalPrice();
 		Hotel hotelListOfMinimumPrice = hotelList.stream()
 				.min((hotel1, hotel2) -> hotel1.getTotalPrice() > hotel2.getTotalPrice() ? 1 : -1).get();
-		List<Hotel> desiredHotelList = hotelList.stream()
+		Hotel desiredHotelList = hotelList.stream()
 				.filter(hotel -> hotel.getTotalPrice() == hotelListOfMinimumPrice.getTotalPrice())
-				.collect(Collectors.toList());
-		desiredHotelList.stream().forEach(hotel -> System.out.print(hotel.getName() + "   "));
-		System.out.println("with Total Rates $" + hotelListOfMinimumPrice.getTotalPrice());
+				.max((hotel1, hotel2) -> hotel1.getRating() > hotel2.getRating() ? 1 : -1).get();
+		System.out.println(desiredHotelList.getName() + ", Rating:  " + desiredHotelList.getRating()
+				+ " and Total prices: $" + desiredHotelList.getTotalPrice());
 
 	}
 
