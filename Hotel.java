@@ -3,6 +3,7 @@ package com.bridgelabz.workshop;
 public class Hotel {
 	private String name;
 	private int rateForRegularCustomer;
+	private int totalPrice;
 	public String getName() {
 		return name;
 	}
@@ -22,6 +23,13 @@ public class Hotel {
 		super();
 		this.name = name;
 		this.rateForRegularCustomer = rateForRegularCustomer;
+		this.totalPrice=0;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 }
