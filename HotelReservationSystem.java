@@ -40,8 +40,9 @@ public class HotelReservationSystem {
 					.min((hotel1, hotel2) -> hotel1.getTotalPrice() > hotel2.getTotalPrice() ? 1 : -1).get();
 	    	List<Hotel> desiredHotelList = hotelList.stream()
 					.filter(hotel -> hotel.getTotalPrice() == hotelListOfMinimumPrice.getTotalPrice()).collect(Collectors.toList());
-	    	desiredHotelList.stream().forEach(hotel->System.out.println(hotel.getName()
-			+ ", Total Rate: $" + hotel.getTotalPrice()));		
+	    	desiredHotelList.stream().forEach(hotel->System.out.print(hotel.getName()
+			+ "   "));
+	    	System.out.println("with Total Rates $"+hotelListOfMinimumPrice.getTotalPrice() );
 		   
 	    }
 	public static void  calculateTotalPrice() throws ParseException {
