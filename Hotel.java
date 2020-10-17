@@ -2,7 +2,8 @@ package com.bridgelabz.workshop;
 
 public class Hotel {
 	private String name;
-	private int rateForRegularCustomer;
+	private int weekdayRateForRegularCustomer;
+	private int weekendRateForRegularCustomer;
 	private int totalPrice;
 	public String getName() {
 		return name;
@@ -10,19 +11,14 @@ public class Hotel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getRateForRegularCustomer() {
-		return rateForRegularCustomer;
-	}
-	public void setRateForRegularCustomer(int rateForRegularCustomer) {
-		this.rateForRegularCustomer = rateForRegularCustomer;
-	}
 	public Hotel() {
 		
 	}
-	public Hotel(String name, int rateForRegularCustomer) {
+	public Hotel(String name, int weekdayRateForRegularCustomer, int weekendRateForRegularCustomer) {
 		super();
 		this.name = name;
-		this.rateForRegularCustomer = rateForRegularCustomer;
+		this.weekdayRateForRegularCustomer = weekdayRateForRegularCustomer;
+		this.weekendRateForRegularCustomer = weekendRateForRegularCustomer;
 		this.totalPrice=0;
 	}
 	public int getTotalPrice() {
@@ -30,6 +26,18 @@ public class Hotel {
 	}
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	public int getWeekdayRateForRegularCustomer() {
+		return weekdayRateForRegularCustomer;
+	}
+	public void setWeekdayRateForRegularCustomer(int weekdayRateForRegularCustomer) {
+		this.weekdayRateForRegularCustomer = weekdayRateForRegularCustomer;
+	}
+	public int getWeekendRateForRegularCustomer() {
+		return weekendRateForRegularCustomer;
+	}
+	public void setWeekendRateForRegularCustomer(int weekendRateForRegularCustomer) {
+		this.weekendRateForRegularCustomer = weekendRateForRegularCustomer;
 	}
 
 }

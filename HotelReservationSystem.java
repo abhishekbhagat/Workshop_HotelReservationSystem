@@ -22,8 +22,10 @@ public class HotelReservationSystem {
 			Hotel hotel = new Hotel();
 			System.out.println("Enter the name of Hotel");
 			hotel.setName(consoleInputObj.next());
-			System.out.println("Enter the Rate for Regular Customer");
-			hotel.setRateForRegularCustomer(consoleInputObj.nextInt());
+			System.out.println("Enter the Weekday Rate for Regular Customer");
+			hotel.setWeekdayRateForRegularCustomer(consoleInputObj.nextInt());
+			System.out.println("Enter the Weekend Rate for Regular Customer");
+			hotel.setWeekendRateForRegularCustomer(consoleInputObj.nextInt());
 			hotelList.add(hotel);
 			System.out.println("Do you want to Add more Hotel in the list(Y/N)");
 			char choice = consoleInputObj.next().charAt(0);
@@ -50,8 +52,11 @@ public class HotelReservationSystem {
 		for (Hotel hotel : hotelList) {
 			if (customerType.equals("RegularCustomer")) {
 				   for(int index=0;days[index]!=0;index++) {
-					hotel.setTotalPrice(hotel.getTotalPrice() + hotel.getRateForRegularCustomer());
-		   	 }
+					   if ((days[index] == 1 ||days[index]  == 7))
+							hotel.setTotalPrice(hotel.getTotalPrice() + hotel.getWeekendRateForRegularCustomer());
+						else
+							hotel.setTotalPrice(hotel.getTotalPrice() + hotel.getWeekdayRateForRegularCustomer());   
+				   }
 			}
 		}
     }
