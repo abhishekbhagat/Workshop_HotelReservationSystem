@@ -7,16 +7,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class HotelReservationSystem {
 	public static List<Hotel> hotelList = new ArrayList<>();
-
-	/**
-	 * uc1
-	 * 
-	 */
-	public static void addHotelRateAndNameInHotelReservationSystem() {
+	public static void addHotelInHotelReservationSystem() {
 		Scanner consoleInputObj = new Scanner(System.in);
 		while (true) {
 			Hotel hotel = new Hotel();
@@ -40,7 +34,11 @@ public class HotelReservationSystem {
 		}
 	}
 
-	public static void findCheapestHotelGivenDateRange() throws ParseException {
+	/**
+	 * uc9
+	 * @throws ParseException
+	 */
+	public static void findCheapestBestRatedHotelGivenDateRangeForRewardCustomer() throws ParseException {
 		calculateTotalPrice();
 		Hotel hotelListOfMinimumPrice = hotelList.stream()
 				.min((hotel1, hotel2) -> hotel1.getTotalPrice() > hotel2.getTotalPrice() ? 1 : -1).get();
@@ -58,12 +56,17 @@ public class HotelReservationSystem {
 		String customerType = scannerObj.next();
 		int days[] = getDateFromUserAndReturnDay();
 		for (Hotel hotel : hotelList) {
-			if (customerType.equals("RegularCustomer")) {
-				for (int index = 0; days[index] != 0; index++) {
-					if ((days[index] == 1 || days[index] == 7))
+			for (int index = 0; days[index] != 0; index++) {
+				if ((days[index] == 1 || days[index] == 7)) {
+					if (customerType.equals("RegularCustomer"))
 						hotel.setTotalPrice(hotel.getTotalPrice() + hotel.getWeekendRateForRegularCustomer());
 					else
+						hotel.setTotalPrice(hotel.getTotalPrice() + hotel.getWeekendRateForRewardCustomer());
+				} else {
+					if (customerType.equals("RegularCustomer"))
 						hotel.setTotalPrice(hotel.getTotalPrice() + hotel.getWeekdayRateForRegularCustomer());
+					else
+						hotel.setTotalPrice(hotel.getTotalPrice() + hotel.getWeekdayRateForRewardCustomer());
 				}
 			}
 		}
@@ -95,7 +98,7 @@ public class HotelReservationSystem {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		addHotelRateAndNameInHotelReservationSystem();
-		findCheapestHotelGivenDateRange();
+		addHotelInHotelReservationSystem();
+		findCheapestBestRatedHotelGivenDateRangeForRewardCustomer();
 	}
 }
