@@ -35,11 +35,11 @@ public class HotelReservationSystem {
 	}
 
 	/**
-	 * uc11
+	 * uc12
 	 * @throws ParseException
 	 * @throws HotelReservationSystemException 
 	 */
-	public static void findCheapestBestRatedHotelGivenDateRangeForRewardCustomerByUsingJavaStream() throws ParseException, HotelReservationSystemException {
+	public static void findCheapestBestRatedHotelGivenDateRangeForRegularCustomerByUsingJavaStream() throws ParseException, HotelReservationSystemException {
 		try
 		{
 			calculateTotalPrice();
@@ -112,6 +112,6 @@ public class HotelReservationSystem {
 
 	public static void main(String[] args) throws ParseException, HotelReservationSystemException {
 		addHotelInHotelReservationSystem();
-		findCheapestBestRatedHotelGivenDateRangeForRewardCustomerUsingJavaStream();
+		findCheapestBestRatedHotelGivenDateRangeForRegularCustomerByUsingJavaStream();
 	}
 }
