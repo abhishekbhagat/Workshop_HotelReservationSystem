@@ -43,7 +43,7 @@ public class HotelReservationSystem {
 		Hotel desiredHotelList = hotelList.stream()
 				.filter(hotel -> hotel.getTotalPrice() == hotelListOfMinimumPrice.getTotalPrice())
 				.max((hotel1, hotel2) -> hotel1.getRating() > hotel2.getRating() ? 1 : -1).get();
-		System.out.println(desiredHotelList.getName() + ", Rating:  " + desiredHotelList.getRating()
+		System.out.println(desiredHotelList.getName() + ",Rating:  " + desiredHotelList.getRating()
 				+ " and Total prices: $" + desiredHotelList.getTotalPrice());
 
 	}
