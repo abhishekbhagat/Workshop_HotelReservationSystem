@@ -8,7 +8,6 @@ public class Hotel {
 	private int weekdayRateForRewardCustomer;
 	private int weekendRateForRewardCustomer;
 	private int rating;
-
 	public String getName() {
 		return name;
 	}

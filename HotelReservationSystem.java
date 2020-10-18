@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class HotelReservationSystem {
 	public static List<Hotel> hotelList = new ArrayList<>();
-	public static void addHotelInHotelReservationSystem() {
+	public static void addHotelInHotelReservationSystem()  {
 		Scanner consoleInputObj = new Scanner(System.in);
 		while (true) {
 			Hotel hotel = new Hotel();
@@ -37,24 +37,32 @@ public class HotelReservationSystem {
 	/**
 	 * uc9
 	 * @throws ParseException
+	 * @throws HotelReservationSystemException 
 	 */
-	public static void findCheapestBestRatedHotelGivenDateRangeForRewardCustomer() throws ParseException {
-		calculateTotalPrice();
-		Hotel hotelListOfMinimumPrice = hotelList.stream()
-				.min((hotel1, hotel2) -> hotel1.getTotalPrice() > hotel2.getTotalPrice() ? 1 : -1).get();
-		Hotel desiredHotelList = hotelList.stream()
-				.filter(hotel -> hotel.getTotalPrice() == hotelListOfMinimumPrice.getTotalPrice())
-				.max((hotel1, hotel2) -> hotel1.getRating() > hotel2.getRating() ? 1 : -1).get();
-		System.out.println(desiredHotelList.getName() + ",Rating:  " + desiredHotelList.getRating()
-				+ " and Total prices: $" + desiredHotelList.getTotalPrice());
-
+	public static void findCheapestBestRatedHotelGivenDateRangeForRewardCustomer() throws ParseException, HotelReservationSystemException {
+		try
+		{
+			calculateTotalPrice();
+			Hotel hotelListOfMinimumPrice = hotelList.stream()
+					.min((hotel1, hotel2) -> hotel1.getTotalPrice() > hotel2.getTotalPrice() ? 1 : -1).get();
+			Hotel desiredHotelList = hotelList.stream()
+					.filter(hotel -> hotel.getTotalPrice() == hotelListOfMinimumPrice.getTotalPrice())
+					.max((hotel1, hotel2) -> hotel1.getRating() > hotel2.getRating() ? 1 : -1).get();
+			System.out.println(desiredHotelList.getName() + ",Rating:  " + desiredHotelList.getRating()
+					+ " and Total prices: $" + desiredHotelList.getTotalPrice());
+		}
+		catch(HotelReservationSystemException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	public static void calculateTotalPrice() throws ParseException {
+	public static void calculateTotalPrice() throws ParseException, HotelReservationSystemException {
 		Scanner scannerObj = new Scanner(System.in);
 		System.out.println("Enter the Custome type ");
 		String customerType = scannerObj.next();
-		int days[] = getDateFromUserAndReturnDay();
+		if(!(customerType.equalsIgnoreCase("RewardCustomer") || customerType.equalsIgnoreCase("RegularCustomer")))
+				throw new HotelReservationSystemException("You have entered invalid Customer Type");
+		int days[] = getDateAndCustomerTypeFromUserAndReturnDay();
 		for (Hotel hotel : hotelList) {
 			for (int index = 0; days[index] != 0; index++) {
 				if ((days[index] == 1 || days[index] == 7)) {
@@ -72,7 +80,7 @@ public class HotelReservationSystem {
 		}
 	}
 
-	public static int[] getDateFromUserAndReturnDay() throws ParseException {
+	public static int[] getDateAndCustomerTypeFromUserAndReturnDay() throws ParseException, HotelReservationSystemException {
 		int index = 0;
 		int day[] = new int[10];
 		while (true) {
@@ -81,6 +89,7 @@ public class HotelReservationSystem {
 			Calendar calendar = Calendar.getInstance();
 			String date1 = consoleInputObj.nextLine();
 			SimpleDateFormat format = new SimpleDateFormat("ddMMMyyyy");
+			try {
 			Date yourDate = format.parse(date1);
 			calendar.setTime(yourDate);
 			day[index] = calendar.get(Calendar.DAY_OF_WEEK);
@@ -93,11 +102,15 @@ public class HotelReservationSystem {
 				continue;
 			else
 				System.out.println("invalid input");
+		  }
+		 catch (ParseException e) {
+		    throw new HotelReservationSystemException("You have entered invalid Date Fomat");
+		 }
 		}
 		return day;
 	}
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, HotelReservationSystemException {
 		addHotelInHotelReservationSystem();
 		findCheapestBestRatedHotelGivenDateRangeForRewardCustomer();
 	}
