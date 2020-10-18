@@ -39,7 +39,7 @@ public class HotelReservationSystem {
 	 * @throws ParseException
 	 * @throws HotelReservationSystemException 
 	 */
-	public static void findCheapestBestRatedHotelGivenDateRangeForRewardCustomerUsingJavaStream() throws ParseException, HotelReservationSystemException {
+	public static void findCheapestBestRatedHotelGivenDateRangeForRewardCustomerByUsingJavaStream() throws ParseException, HotelReservationSystemException {
 		try
 		{
 			calculateTotalPrice();
