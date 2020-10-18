@@ -26,6 +26,10 @@ public class HotelReservationSystem {
 			hotel.setWeekdayRateForRegularCustomer(consoleInputObj.nextInt());
 			System.out.println("Enter the Weekend Rate for Regular Customer");
 			hotel.setWeekendRateForRegularCustomer(consoleInputObj.nextInt());
+			System.out.println("Enter the Weekday Rate for Reward Customer");
+			hotel.setWeekdayRateForRewardCustomer(consoleInputObj.nextInt());
+			System.out.println("Enter the Weekend Rate for Reward Customer");
+			hotel.setWeekendRateForRewardCustomer(consoleInputObj.nextInt());
 			System.out.println("Enter the Rating");
 			hotel.setRating(consoleInputObj.nextInt());
 			hotelList.add(hotel);
